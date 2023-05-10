@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Push-notiser</title>
+    <style>
+        body {
+            background-color: black;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            padding: 1% 3%;
+            margin: auto;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="button">Notis</button>
+
+    <script>
+        "use strict";
+
+        const button = document.getElementById("button");
+
+        button.addEventListener("click", () => {
+            setTimeout(showNotification, 5000);
+        });
+
+        function showNotification() {
+            Notification.requestPermission().then(
+                perm => {
+                    if (perm === "granted") {
+                        new Notification("Avgångstid", {
+                            title: "Avgångstid",
+                            body: "5 minuter till avgång",
+                            tag: "Avgångstid",
+                            image: "ferry.svg"
+                        });
+                    }
+                }
+            )
+        }
+    </script>
+</body>
+
+</html>
